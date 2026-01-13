@@ -1,16 +1,8 @@
-import { existsSync } from 'fs'
 import { config } from 'dotenv'
 import { defineConfig, env } from 'prisma/config'
 
-// Only load .env.local if it exists (for local development)
-// In production/Vercel, environment variables are set directly
-if (existsSync('.env.local')) {
-  config({ path: '.env.local', override: false })
-}
-// Load default .env if it exists
-if (existsSync('.env')) {
-  config({ override: false })
-}
+config({ path: '.env.local' })
+config()
 
 export default defineConfig({
   schema: 'prisma/schema.prisma',
